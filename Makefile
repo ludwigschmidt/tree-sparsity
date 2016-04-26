@@ -3,6 +3,7 @@ CXXFLAGS=-std=gnu++11 -DNDEBUG -Wall -Wextra -march=native -O3 -I external/eigen
 GTEST_DIR=~/code/googletest/googletest
 
 CORE_DIR=src/core
+PYTHON_DIR=src/python
 TEST_DIR=src/test
 TEST_BIN_DIR=test_bin
 

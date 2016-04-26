@@ -1,3 +1,6 @@
 test_bin
 obj
 *.swp
+src/python/dist
+src/python/build
+src/python/Tree_sparsity.egg-info
