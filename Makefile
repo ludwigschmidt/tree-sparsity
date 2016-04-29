@@ -28,3 +28,12 @@ $(TEST_BIN_DIR)/exact_tree_projection_test: $(TEST_DIR)/exact_tree_projection_te
 	mkdir -p $(TEST_BIN_DIR)
 	$(CXX) $(CXXFLAGS) -I $(GTEST_DIR)/include -c -o obj/exact_tree_projection_test.o $(TEST_DIR)/exact_tree_projection_test.cc
 	$(CXX) $(CXXFLAGS) -o $(TEST_BIN_DIR)/exact_tree_projection_test obj/gtest_main.o obj/gtest-all.o obj/exact_tree_projection_test.o -pthread
+
+$(TEST_BIN_DIR)/approximate_tree_projection_test: $(TEST_DIR)/approximate_tree_projection_test.cc $(CORE_DIR)/approximate_tree_projection.h $(TEST_DEPS)
+	mkdir -p $(TEST_BIN_DIR)
+	$(CXX) $(CXXFLAGS) -I $(GTEST_DIR)/include -c -o obj/approximate_tree_projection_test.o $(TEST_DIR)/approximate_tree_projection_test.cc
+	$(CXX) $(CXXFLAGS) -o $(TEST_BIN_DIR)/approximate_tree_projection_test obj/gtest_main.o obj/gtest-all.o obj/approximate_tree_projection_test.o -pthread
+
+run-all-tests: $(TEST_BIN_DIR)/approximate_tree_projection_test $(TEST_BIN_DIR)/exact_tree_projection_test
+	$(TEST_BIN_DIR)/exact_tree_projection_test
+	$(TEST_BIN_DIR)/approximate_tree_projection_test
