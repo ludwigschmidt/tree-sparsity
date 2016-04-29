@@ -893,14 +893,22 @@ bool approximate_tree_projection(const double * const x,
   // TODO: use options
   double lambda_low = 0.0;
   double lambda_high = 0.0;
+  double mean = 0.0;
   for (int ii = 0; ii < size; ++ii) {
     subtree_weights[ii] = x[ii];
+    mean += x[ii];
   }
+  mean /= size;
+  int offset = std::min(size - 1, size - k_low / 2);
   std::nth_element(subtree_weights.begin(),
-                   subtree_weights.begin() + size - k_low / 2,
+                   subtree_weights.begin() + offset,
                    subtree_weights.end());
-  lambda_high = subtree_weights[size - k_low / 2] / 2.0;
+  lambda_high = subtree_weights[offset] / 2.0;
 
+  if (lambda_high <= mean) {
+    lambda_high = mean;
+  }
+  
   if (options.verbose) {
     snprintf(output_buffer, kOutputBufferSize, "n: %d  degree: %d  k_low: %d"
         " k_high: %d  l_low: %e  l_high: %e  max_num_iter: %d\n", size,

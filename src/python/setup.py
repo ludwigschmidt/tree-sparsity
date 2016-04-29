@@ -8,6 +8,6 @@ module = Extension(
     include_dirs=[np.get_include()])
 
 setup(name = 'Tree sparsity',
-      version = 0.1,
+      version = 0.2,
       packages = find_packages(),
       ext_modules = [module])
