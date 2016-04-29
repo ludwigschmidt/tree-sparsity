@@ -45,3 +45,16 @@ The function expects five parameters:
 - A boolean value indicating whether verbose output should be printed to stdout.
 
 The function then returns a bool array indicating for each index whether it is in the returned support.
+
+For instance, `approximate_tree_projection` can be used as follows:
+
+```python
+x = np.array([0.5, 0, 0, 2, 3, 0, 0])
+support = treesparsity.approximate_tree_projection(x, 2, 2, 4, False)
+```
+
+The variable `support` then contains
+
+```python
+array([ True,  True, False,  True,  True, False, False], dtype=bool)
+```
